@@ -2,21 +2,20 @@ import React from "react"
 import Header from "./components/Header"
 import { languages } from "./languages"
 import { clsx } from "clsx"
-// import {getRandomWord } from "./utils"
 import {getFarewellText , getRandomWord} from "./utils"
 export default function App(){
-
+    // State veriables 
     const [currentWord,setCurrentWord] = React.useState( getRandomWord())
     const [holdkeys,setHoldKeys] = React.useState([])
-
+    // Drived veriables 
     const wrongGuessCount = holdkeys.filter(letter => !currentWord.includes(letter)).length
     const isGameWon = currentWord.split("").every(letter => holdkeys.includes(letter))
     const isGameLost = wrongGuessCount >= languages.length-1 
     const isGameOver = isGameWon || isGameLost
     const incorrectGuess = wrongGuessCount && !currentWord.includes(holdkeys[holdkeys.length -1])
+    // keys
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
-
-    // console.log(getFarewellText())
+    // functions 
     const languagesArr = languages.map((language,index) =>{ 
         const lostLanguages = wrongGuessCount > index
         const styles = {
@@ -38,16 +37,11 @@ export default function App(){
         const guess = isGameLost || holdkeys.includes(word)
         const className = clsx({
             "missedLetter" : isGameLost && !holdkeys.includes(word)
-            // isGameLost &&.b
         })
       
             return (
                 <span key={index} className={className}>{guess? word.toUpperCase() : ""}</span>
             )
-       
-
-
-
     })
 
     const keysArr = alphabet.split("")
@@ -61,7 +55,6 @@ export default function App(){
             wrong: wrong,
         })
         
-    
         return (
             <button
                 disabled={isGameOver}
