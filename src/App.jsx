@@ -47,9 +47,9 @@ export default function App(){
     const keysArr = alphabet.split("")
 
     const keyboardKeys = keysArr.map((key) => {
-        const guessedLetter = holdkeys.includes(key);
-        const isCorrect = guessedLetter && currentWord.includes(key);
-        const wrong = guessedLetter && !currentWord.includes(key);
+        const guessedLetter = holdkeys.includes(key)
+        const isCorrect = guessedLetter && currentWord.includes(key)
+        const wrong = guessedLetter && !currentWord.includes(key)
         const className = clsx({
             correct: isCorrect,
             wrong: wrong,
